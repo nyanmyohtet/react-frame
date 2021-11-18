@@ -8,12 +8,14 @@ const PrivateRoute = ({ isLoggedIn, component: Component, ...rest }) => (
         {...rest}
         component={props =>
             isLoggedIn ? (
-                <div className="container">
+                <div>
                     <Header {...props} />
-                    <Component {...props} />
+                    <div  className="container">
+                        <Component {...props} />
+                    </div>
                 </div>
             ) : (
-                <Redirect to="/" />
+                <Redirect to="/login" />
             )
         }
     />

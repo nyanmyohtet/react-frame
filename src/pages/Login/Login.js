@@ -31,7 +31,6 @@ class Login extends Component {
                 const { data } = res;
                 const { token } = data.success;
                 const { user } = data;
-                const isAdmin = user.type == 0;
 
                 /** store logged in user's info to local storage */
                 localStorage.setItem(
@@ -50,7 +49,6 @@ class Login extends Component {
                             accessToken: token,
                             ...user
                         },
-                        isAdmin
                     }
                 });
             })

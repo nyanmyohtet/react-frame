@@ -139,16 +139,16 @@ class PostList extends Component {
                                     <Form.Control
                                         name="title"
                                         value={title}
-                                        placeholder="Search Title"
+                                        placeholder="Search keyword"
                                         onChange={this.handleAllSearchInputs}
                                     />
                                 </Col>
                                 <Button
                                     type="submit"
-                                    className="header-btn"
+                                    className="text-uppercase header-btn"
                                     onClick={this.handleSearch}
                                 >
-                                    Search
+                                    Filter
                                 </Button>
                             </Form.Row>
                         </Form>
@@ -157,21 +157,21 @@ class PostList extends Component {
                         {isLoggedIn && (
                             <Link
                                 to="/post/create"
-                                className="btn btn-primary header-btn mr-4"
+                                className="btn btn-primary text-uppercase header-btn mr-4"
                             >
-                                Add
+                                Create
                             </Link>
                         )}
                         {isLoggedIn && (
                             <Link
                                 to="/post/upload-csv"
-                                className="btn btn-primary header-btn mr-4"
+                                className="btn btn-primary text-uppercase header-btn mr-4"
                             >
                                 Upload
                             </Link>
                         )}
                         <Button
-                            className="header-btn mr-4"
+                            className="text-uppercase header-btn mr-4"
                             onClick={this.handleDownloadCSV}
                         >
                             Download
