@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { LOGOUT } from "../actions/types";
+import { LOGOUT } from "../store/actions/types";
 import NavBar from "./NavBar";
 
 class Header extends Component {

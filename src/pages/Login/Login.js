@@ -5,7 +5,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Error from "../../components/Error";
 import API from "../../api/api";
-import { LOGIN_SUCCESS } from "../../actions/types";
+import { LOGIN_SUCCESS } from "../../store/actions/types";
 
 class Login extends Component {
     constructor(props) {
