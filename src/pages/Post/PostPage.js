@@ -1,0 +1,6 @@
+import React, { Component } from "react";
+import PostList from "./PostList";
+
+const Post = () => <PostList />
+
+export default Post;
