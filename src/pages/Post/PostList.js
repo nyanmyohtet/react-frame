@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, Col, Form, Modal, Table } from "react-bootstrap";
+import { Button, Col, Form, Table } from "react-bootstrap";
 import Loading from "../../components/Loading";
 import PaginationBar from "../../components/PaginationBar";
 import API from "../../api/api";
@@ -15,13 +15,8 @@ class PostList extends Component {
 
     this.state = {
       loading: false,
-      showModal: false,
       title: "",
       postList: [],
-      postDetailModal: {
-        title: "",
-        description: ""
-      },
       pagination: {
         current_page: 1,
         first_page_url: "",
@@ -33,9 +28,6 @@ class PostList extends Component {
     };
 
     this.handleAllSearchInputs = this.handleAllSearchInputs.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handlePostTitle = this.handlePostTitle.bind(this);
-    this.handleClose = this.handleClose.bind(this);
     this.fetchPostList = this.fetchPostList.bind(this);
     this.handleDownloadCSV = this.handleDownloadCSV.bind(this);
   }
@@ -44,22 +36,6 @@ class PostList extends Component {
     event.preventDefault();
     let { name, value } = event.target;
     this.setState({ [name]: value });
-  }
-
-  handleSearch(event) {
-    event.preventDefault();
-    this.fetchPostList();
-  }
-
-  handlePostTitle(title, description, event) {
-    event.preventDefault();
-    const postDetailModal = { title, description };
-    this.setState({ showModal: true, postDetailModal });
-  }
-
-  handleClose(event) {
-    const postDetailModal = { title: "", description: "" };
-    this.setState({ showModal: false, postDetailModal });
   }
 
   fetchPostList(url = this.BASE_API_ROUTE) {
@@ -90,11 +66,6 @@ class PostList extends Component {
 
   handleDownloadCSV(event) {
     event.preventDefault();
-    window.location.href = "http://localhost:8000/api/posts/export-csv";
-  }
-
-  handleDelete(id, event) {
-    event.preventDefault();
   }
 
   componentDidMount() {
@@ -111,9 +82,7 @@ class PostList extends Component {
       "Title",
       "Post Description",
       "Posted User",
-      "Posted Date",
-      "Action",
-      "Action"
+      "Posted Date"
     ];
 
     const { isLoggedIn } = this.props;
@@ -137,7 +106,6 @@ class PostList extends Component {
                 <Button
                   type="submit"
                   className="text-uppercase header-btn"
-                  onClick={this.handleSearch}
                 >
                   Filter
                 </Button>
@@ -169,21 +137,6 @@ class PostList extends Component {
             </Button>
           </div>
         </div>
-        <div>
-          <Modal
-            show={this.state.showModal}
-            onHide={this.handleClose}
-          >
-            <Modal.Header closeButton>
-              <Modal.Title>
-                {this.state.postDetailModal.title}
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {this.state.postDetailModal.description}
-            </Modal.Body>
-          </Modal>
-        </div>
         <Table striped bordered hover className="post-list-tbl">
           <thead>
             <tr>
@@ -207,7 +160,7 @@ class PostList extends Component {
                   <Loading />
                 </td>
               </tr>
-            ) : this.state.postList.length == 0 ? (
+            ) : this.state.postList.length === 0 ? (
               <tr>
                 <td colSpan="9" className="text-center">
                   Empty
@@ -229,13 +182,6 @@ class PostList extends Component {
                     <td>
                       <a
                         href="#"
-                        onClick={event =>
-                          this.handlePostTitle(
-                            title,
-                            description,
-                            event
-                          )
-                        }
                       >
                         {title}
                       </a>
@@ -243,28 +189,6 @@ class PostList extends Component {
                     <td>{description}</td>
                     <td>{created_user.name}</td>
                     <td>{created_at}</td>
-                    <td>
-                      {isLoggedIn && (
-                        <Link to={`post/edit/${id}`}>
-                          Edit
-                        </Link>
-                      )}
-                    </td>
-                    <td>
-                      {isLoggedIn && (
-                        <a
-                          href="#"
-                          onClick={event =>
-                            this.handleDelete(
-                              id,
-                              event
-                            )
-                          }
-                        >
-                          Delete
-                        </a>
-                      )}
-                    </td>
                   </tr>
                 )
               )

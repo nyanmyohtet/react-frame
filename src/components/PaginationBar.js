@@ -36,7 +36,7 @@ export default function PaginationBar({
         <Pagination.Item
           key={index}
           onClick={event => handlePagination("index", index, event)}
-          active={pagination.current_page == index}
+          active={pagination.current_page === index}
         >
           {index}
         </Pagination.Item>
