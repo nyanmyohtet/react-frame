@@ -23,8 +23,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 │   ├── assets - Global static assets such as images, svgs, company logo, etc.
 │   │   └── style - For CCS Style files
 │   │       └── index.css
-│   ├── api
-│   │   └── api.js - Configrure [axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
+│   ├── axios
+│   │   └── index.js - Configrure [axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
 │   ├── components - Global shared/reusable components, such as layout (wrappers, navigation), form components, buttons
 │   │   ├── Error.js
 │   │   ├── Header.js

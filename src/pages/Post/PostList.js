@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, Col, Form, Table } from "react-bootstrap";
 import Loading from "../../components/Loading";
 import PaginationBar from "../../components/PaginationBar";
-import API from "../../api/api";
+import axios from "../../axios";
 
 class PostList extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class PostList extends Component {
     this.setState({ loading: true });
     const { title } = this.state;
     const data = { title };
-    API.post(url, data).then(res => {
+    axios.post(url, data).then(res => {
       if (this._isMounted) {
         this.setState(
           {

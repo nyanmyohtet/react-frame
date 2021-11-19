@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Error from "../../components/Error";
-import API from "../../api/api";
+import axios from "../../axios";
 import { LOGIN_SUCCESS } from "../../store/actions/types";
 
 class Login extends Component {
@@ -26,7 +26,7 @@ class Login extends Component {
     const { dispatch } = this.props;
     const data = { email, password };
 
-    API.post("auth/login", data)
+    axios.post("auth/login", data)
       .then(res => {
         const { data } = res;
         const { token } = data.success;
