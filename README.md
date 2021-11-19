@@ -19,38 +19,39 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 │   ├── manifest.json
 │   └── robots.txt
 ├── src
-│   ├── App.js
+│   ├── App.js - Sets up the auth and routing.
+│   ├── assets - Global static assets such as images, svgs, company logo, etc.
+│   │   └── style - For CCS Style files
+│   │       └── index.css
 │   ├── api
 │   │   └── api.js - Configrure [axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
-│   ├── components - Common components that could easily be used across multiple sections of the app
+│   ├── components - Global shared/reusable components, such as layout (wrappers, navigation), form components, buttons
 │   │   ├── Error.js
 │   │   ├── Header.js
 │   │   ├── Loading.js
 │   │   ├── NavBar.js
 │   │   ├── PaginationBar.js
-│   ├── index.js - Inject React App into HTML DOM
-│   ├── pages - Pages are organized by route
+│   ├── index.js - The entry point -inject React App into HTML DOM
+│   ├── pages - The majority of the app would be contained here. Pages are organized by route.
 │   │   ├── Login - For route - "/login"
 │   │   │   └── LoginPage.js
 │   │   └── Post - For route - "/post"
-│   │       ├── PostList.js - Component used for "/post" route
+│   │       ├── PostList.js - Component used in PostPage
 │   │       └── PostPage.js
 │   ├── reportWebVitals.js
 │   ├── router - For routing purpose
 │   │   ├── AppRouter.js - Main router for whole App.
-│   │   ├── PrivateRoute.js - Route only for authorized user only
+│   │   ├── PrivateRoute.js - Route only for authorized useage only
 │   │   └── PublicRoute.js - Route for public access
 │   ├── setupTests.js
-│   ├── store - For App's State Management
+│   ├── store - Global Redux store
 │   │   ├── actions
 │   │   │   └── types.js - Declare action types
 │   │   ├── index.js - Configure Redux Store
-│   │   └── reducers - Hold reducers
+│   │   └── reducers - For reducers
 │   │       ├── auth.js - Auth related action
 │   │       └── index.js - Combine reducers and export as one module
-│   ├── style - For CCS Style files
-│   │   └── index.css
-│   └── utils - utils folder is usually some global utility functions, like validation and conversion, that could easily be used across multiple sections of the app.
+│   └── utils - Utilities, helpers, constants, and the like
 │       ├── constants
 │       │   └── constant.js
 │       └── helpers
@@ -64,7 +65,7 @@ Common components that could easily be used across multiple sections of the app.
 
 ## `pages`
 
-Pages are organized by route.
+Here's where the main part of your app will live: in the `pages` directory. Pages are organized by route.
 eg., `post` folder for "/post" route.
 
 ## `router`
