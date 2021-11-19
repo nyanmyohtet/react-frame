@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { LOGOUT } from "../actions/types";
 import NavBar from "./NavBar";
+import { LocalStorage } from "../services/LocalStorage/LocalStorage.service";
 
 class Header extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class Header extends Component {
         e.preventDefault();
         const { dispatch } = this.props;
 
-        localStorage.removeItem("user");
+        LocalStorage.remove("user");
 
         dispatch({
             type: LOGOUT

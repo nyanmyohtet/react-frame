@@ -7,8 +7,9 @@ import {
     LOGIN_FAIL,
     LOGOUT
 } from "../actions/types";
+import { LocalStorage } from "../services/LocalStorage/LocalStorage.service";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(LocalStorage.get("user"));
 
 const initialState = user
     ? { isLoggedIn: true, user }

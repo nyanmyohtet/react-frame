@@ -4,8 +4,7 @@ import { Redirect } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Error from "../../components/Error";
-import API from "../../api/api";
-import { LOGIN_SUCCESS } from "../../actions/types";
+import { login } from "../../services/Auth/Auth.service";
 
 class Login extends Component {
     constructor(props) {
@@ -18,51 +17,26 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit({ email, password }) {
+    async handleSubmit({ email, password }) {
         this.setState({
             errors: {}
         });
 
-        const { dispatch } = this.props;
         const data = { email, password };
 
-        API.post("auth/login", data)
-            .then(res => {
-                const { data } = res;
-                const { token } = data.success;
-                const { user } = data;
-
-                /** store logged in user's info to local storage */
-                localStorage.setItem(
-                    "user",
-                    JSON.stringify({
-                        accessToken: token,
-                        ...user
-                    })
-                );
-
-                /** store logged in user's info to App State */
-                dispatch({
-                    type: LOGIN_SUCCESS,
-                    payload: {
-                        user: {
-                            accessToken: token,
-                            ...user
-                        },
-                    }
-                });
-            })
-            .then(() => this.props.history.push("/"))
-            .catch(error => {
-                if (error.response) {
-                    console.error(error.response.data);
-                    if (error.response.data.errors) {
-                        this.setState({
-                            errors: error.response.data.errors
-                        });
-                    }
+        try {
+            await login(data)
+        } catch (error) {
+            if (error.response) {
+                console.error(error.response.data);
+                if (error.response.data.errors) {
+                    this.setState({
+                        errors: error.response.data.errors
+                    });
                 }
-            });
+            }
+            console.error(error)
+        }
     }
 
     render() {

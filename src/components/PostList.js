@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, Col, Form, Modal, Table } from "react-bootstrap";
 import Loading from "./Loading";
 import PaginationBar from "./PaginationBar";
-import API from "../api/api";
-import authHeader from "../services/auth-header.service";
+import { getPostList } from "../services/Post/Post.service";
 
 class PostList extends Component {
     constructor(props) {
@@ -63,11 +62,13 @@ class PostList extends Component {
         this.setState({ showModal: false, postDetailModal });
     }
 
-    fetchPostList(url = this.BASE_API_ROUTE) {
+    async fetchPostList(url = this.BASE_API_ROUTE) {
         this.setState({ loading: true });
         const { title } = this.state;
         const data = { title };
-        API.post(url, data, { headers: authHeader() }).then(res => {
+        try {
+            const res = await getPostList(data)
+
             if (this._isMounted) {
                 this.setState(
                     {
@@ -86,7 +87,9 @@ class PostList extends Component {
                     }
                 );
             }
-        });
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     handleDownloadCSV(event) {
@@ -96,14 +99,6 @@ class PostList extends Component {
 
     handleDelete(id, event) {
         event.preventDefault();
-
-        API.delete("posts/" + id.toString(), { headers: authHeader() }).then(
-            res => {
-                if (res.data.success) {
-                    this.fetchPostList();
-                }
-            }
-        );
     }
 
     componentDidMount() {
