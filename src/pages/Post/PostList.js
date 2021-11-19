@@ -5,7 +5,6 @@ import { Button, Col, Form, Modal, Table } from "react-bootstrap";
 import Loading from "../../components/Loading";
 import PaginationBar from "../../components/PaginationBar";
 import API from "../../api/api";
-import authHeader from "../../services/auth-header.service";
 
 class PostList extends Component {
   constructor(props) {
@@ -67,7 +66,7 @@ class PostList extends Component {
     this.setState({ loading: true });
     const { title } = this.state;
     const data = { title };
-    API.post(url, data, { headers: authHeader() }).then(res => {
+    API.post(url, data).then(res => {
       if (this._isMounted) {
         this.setState(
           {
@@ -96,14 +95,6 @@ class PostList extends Component {
 
   handleDelete(id, event) {
     event.preventDefault();
-
-    API.delete("posts/" + id.toString(), { headers: authHeader() }).then(
-      res => {
-        if (res.data.success) {
-          this.fetchPostList();
-        }
-      }
-    );
   }
 
   componentDidMount() {
