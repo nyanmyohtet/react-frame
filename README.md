@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## NPM Packages
+
+- [react-redux](https://react-redux.js.org/)
+- [react-bootstrap](https://react-bootstrap-v4.netlify.app/)
+- [formik](https://formik.org/)
+- [yup](https://github.com/jquense/yup)
+
 ## Recomended Chrome Extensions for Development
 
 - [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
