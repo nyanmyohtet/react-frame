@@ -9,6 +9,22 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [formik](https://formik.org/)
 - [yup](https://github.com/jquense/yup)
 
+## Initial Setup
+
+Need to be installed [NodeJs](https://nodejs.org) and [Yarn](https://yarnpkg.com/).
+
+Change to project directory.
+
+Install npm package
+
+`yarn install`
+
+Start development server
+
+`yarn start`
+
+App is running at http://localhost:3000
+
 ## Recomended Chrome Extensions for Development
 
 - [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
